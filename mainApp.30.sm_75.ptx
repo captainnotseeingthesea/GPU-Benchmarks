@@ -1,0 +1,240 @@
+
+
+
+
+
+
+
+
+.version 7.0
+.target sm_75
+.address_size 64
+
+
+.extern .shared .align 4 .b8 s_float[];
+.extern .shared .align 8 .b8 s_double[];
+
+.visible .entry _Z6reduceIfLi256EEvPKT_PS0_j(
+.param .u64 _Z6reduceIfLi256EEvPKT_PS0_j_param_0,
+.param .u64 _Z6reduceIfLi256EEvPKT_PS0_j_param_1,
+.param .u32 _Z6reduceIfLi256EEvPKT_PS0_j_param_2
+)
+{
+.reg .pred %p<7>;
+.reg .f32 %f<31>;
+.reg .b32 %r<17>;
+.reg .b64 %rd<11>;
+
+
+ld.param.u64 %rd3, [_Z6reduceIfLi256EEvPKT_PS0_j_param_0];
+ld.param.u64 %rd2, [_Z6reduceIfLi256EEvPKT_PS0_j_param_1];
+ld.param.u32 %r8, [_Z6reduceIfLi256EEvPKT_PS0_j_param_2];
+cvta.to.global.u64 %rd1, %rd3;
+mov.u32 %r9, %ntid.x;
+shl.b32 %r10, %r9, 1;
+mov.u32 %r1, %ctaid.x;
+mov.u32 %r2, %tid.x;
+mad.lo.s32 %r16, %r10, %r1, %r2;
+mov.u32 %r11, %nctaid.x;
+mul.lo.s32 %r4, %r10, %r11;
+shl.b32 %r12, %r2, 2;
+mov.u32 %r13, s_float;
+add.s32 %r5, %r13, %r12;
+mov.u32 %r14, 0;
+st.volatile.shared.u32 [%r5], %r14;
+setp.ge.u32	%p1, %r16, %r8;
+@%p1 bra BB0_2;
+
+BB0_1:
+mul.wide.u32 %rd4, %r16, 4;
+add.s64 %rd5, %rd1, %rd4;
+add.s32 %r15, %r16, 256;
+mul.wide.u32 %rd6, %r15, 4;
+add.s64 %rd7, %rd1, %rd6;
+ld.global.nc.f32 %f1, [%rd7];
+ld.global.nc.f32 %f2, [%rd5];
+add.f32 %f3, %f2, %f1;
+ld.volatile.shared.f32 %f4, [%r5];
+add.f32 %f5, %f4, %f3;
+st.volatile.shared.f32 [%r5], %f5;
+add.s32 %r16, %r16, %r4;
+setp.lt.u32	%p2, %r16, %r8;
+@%p2 bra BB0_1;
+
+BB0_2:
+bar.sync 0;
+setp.gt.u32	%p3, %r2, 127;
+@%p3 bra BB0_4;
+
+ld.volatile.shared.f32 %f6, [%r5];
+ld.volatile.shared.f32 %f7, [%r5+512];
+add.f32 %f8, %f7, %f6;
+st.volatile.shared.f32 [%r5], %f8;
+
+BB0_4:
+bar.sync 0;
+setp.gt.u32	%p4, %r2, 63;
+@%p4 bra BB0_6;
+
+ld.volatile.shared.f32 %f9, [%r5];
+ld.volatile.shared.f32 %f10, [%r5+256];
+add.f32 %f11, %f10, %f9;
+st.volatile.shared.f32 [%r5], %f11;
+
+BB0_6:
+bar.sync 0;
+setp.gt.u32	%p5, %r2, 31;
+@%p5 bra BB0_8;
+
+ld.volatile.shared.f32 %f12, [%r5];
+ld.volatile.shared.f32 %f13, [%r5+128];
+add.f32 %f14, %f13, %f12;
+st.volatile.shared.f32 [%r5], %f14;
+ld.volatile.shared.f32 %f15, [%r5];
+ld.volatile.shared.f32 %f16, [%r5+64];
+add.f32 %f17, %f16, %f15;
+st.volatile.shared.f32 [%r5], %f17;
+ld.volatile.shared.f32 %f18, [%r5];
+ld.volatile.shared.f32 %f19, [%r5+32];
+add.f32 %f20, %f19, %f18;
+st.volatile.shared.f32 [%r5], %f20;
+ld.volatile.shared.f32 %f21, [%r5];
+ld.volatile.shared.f32 %f22, [%r5+16];
+add.f32 %f23, %f22, %f21;
+st.volatile.shared.f32 [%r5], %f23;
+ld.volatile.shared.f32 %f24, [%r5];
+ld.volatile.shared.f32 %f25, [%r5+8];
+add.f32 %f26, %f25, %f24;
+st.volatile.shared.f32 [%r5], %f26;
+ld.volatile.shared.f32 %f27, [%r5];
+ld.volatile.shared.f32 %f28, [%r5+4];
+add.f32 %f29, %f28, %f27;
+st.volatile.shared.f32 [%r5], %f29;
+
+BB0_8:
+setp.ne.s32	%p6, %r2, 0;
+@%p6 bra BB0_10;
+
+ld.volatile.shared.f32 %f30, [s_float];
+cvta.to.global.u64 %rd8, %rd2;
+mul.wide.u32 %rd9, %r1, 4;
+add.s64 %rd10, %rd8, %rd9;
+st.global.f32 [%rd10], %f30;
+
+BB0_10:
+ret;
+}
+
+
+.visible .entry _Z6reduceIdLi256EEvPKT_PS0_j(
+.param .u64 _Z6reduceIdLi256EEvPKT_PS0_j_param_0,
+.param .u64 _Z6reduceIdLi256EEvPKT_PS0_j_param_1,
+.param .u32 _Z6reduceIdLi256EEvPKT_PS0_j_param_2
+)
+{
+.reg .pred %p<7>;
+.reg .b32 %r<16>;
+.reg .f64 %fd<31>;
+.reg .b64 %rd<12>;
+
+
+ld.param.u64 %rd3, [_Z6reduceIdLi256EEvPKT_PS0_j_param_0];
+ld.param.u64 %rd2, [_Z6reduceIdLi256EEvPKT_PS0_j_param_1];
+ld.param.u32 %r8, [_Z6reduceIdLi256EEvPKT_PS0_j_param_2];
+cvta.to.global.u64 %rd1, %rd3;
+mov.u32 %r9, %ntid.x;
+shl.b32 %r10, %r9, 1;
+mov.u32 %r1, %ctaid.x;
+mov.u32 %r2, %tid.x;
+mad.lo.s32 %r15, %r10, %r1, %r2;
+mov.u32 %r11, %nctaid.x;
+mul.lo.s32 %r4, %r10, %r11;
+shl.b32 %r12, %r2, 3;
+mov.u32 %r13, s_double;
+add.s32 %r5, %r13, %r12;
+mov.u64 %rd4, 0;
+st.volatile.shared.u64 [%r5], %rd4;
+setp.ge.u32	%p1, %r15, %r8;
+@%p1 bra BB1_2;
+
+BB1_1:
+mul.wide.u32 %rd5, %r15, 8;
+add.s64 %rd6, %rd1, %rd5;
+add.s32 %r14, %r15, 256;
+mul.wide.u32 %rd7, %r14, 8;
+add.s64 %rd8, %rd1, %rd7;
+ld.global.nc.f64 %fd1, [%rd8];
+ld.global.nc.f64 %fd2, [%rd6];
+add.f64 %fd3, %fd2, %fd1;
+ld.volatile.shared.f64 %fd4, [%r5];
+add.f64 %fd5, %fd4, %fd3;
+st.volatile.shared.f64 [%r5], %fd5;
+add.s32 %r15, %r15, %r4;
+setp.lt.u32	%p2, %r15, %r8;
+@%p2 bra BB1_1;
+
+BB1_2:
+bar.sync 0;
+setp.gt.u32	%p3, %r2, 127;
+@%p3 bra BB1_4;
+
+ld.volatile.shared.f64 %fd6, [%r5];
+ld.volatile.shared.f64 %fd7, [%r5+1024];
+add.f64 %fd8, %fd7, %fd6;
+st.volatile.shared.f64 [%r5], %fd8;
+
+BB1_4:
+bar.sync 0;
+setp.gt.u32	%p4, %r2, 63;
+@%p4 bra BB1_6;
+
+ld.volatile.shared.f64 %fd9, [%r5];
+ld.volatile.shared.f64 %fd10, [%r5+512];
+add.f64 %fd11, %fd10, %fd9;
+st.volatile.shared.f64 [%r5], %fd11;
+
+BB1_6:
+bar.sync 0;
+setp.gt.u32	%p5, %r2, 31;
+@%p5 bra BB1_8;
+
+ld.volatile.shared.f64 %fd12, [%r5];
+ld.volatile.shared.f64 %fd13, [%r5+256];
+add.f64 %fd14, %fd13, %fd12;
+st.volatile.shared.f64 [%r5], %fd14;
+ld.volatile.shared.f64 %fd15, [%r5];
+ld.volatile.shared.f64 %fd16, [%r5+128];
+add.f64 %fd17, %fd16, %fd15;
+st.volatile.shared.f64 [%r5], %fd17;
+ld.volatile.shared.f64 %fd18, [%r5];
+ld.volatile.shared.f64 %fd19, [%r5+64];
+add.f64 %fd20, %fd19, %fd18;
+st.volatile.shared.f64 [%r5], %fd20;
+ld.volatile.shared.f64 %fd21, [%r5];
+ld.volatile.shared.f64 %fd22, [%r5+32];
+add.f64 %fd23, %fd22, %fd21;
+st.volatile.shared.f64 [%r5], %fd23;
+ld.volatile.shared.f64 %fd24, [%r5];
+ld.volatile.shared.f64 %fd25, [%r5+16];
+add.f64 %fd26, %fd25, %fd24;
+st.volatile.shared.f64 [%r5], %fd26;
+ld.volatile.shared.f64 %fd27, [%r5];
+ld.volatile.shared.f64 %fd28, [%r5+8];
+add.f64 %fd29, %fd28, %fd27;
+st.volatile.shared.f64 [%r5], %fd29;
+
+BB1_8:
+setp.ne.s32	%p6, %r2, 0;
+@%p6 bra BB1_10;
+
+ld.volatile.shared.f64 %fd30, [s_double];
+cvta.to.global.u64 %rd9, %rd2;
+mul.wide.u32 %rd10, %r1, 8;
+add.s64 %rd11, %rd9, %rd10;
+st.global.f64 [%rd11], %fd30;
+
+BB1_10:
+ret;
+}
+
+

@@ -1,0 +1,33 @@
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_Z8pooling3PdS_iiiiiii' for 'sm_80'
+ptxas info    : Function properties for _Z8pooling3PdS_iiiiiii
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 30 registers, 396 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z8pooling2PdS_iiiiiii' for 'sm_80'
+ptxas info    : Function properties for _Z8pooling2PdS_iiiiiii
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 30 registers, 396 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z8pooling1PdS_iiiiiii' for 'sm_80'
+ptxas info    : Function properties for _Z8pooling1PdS_iiiiiii
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 26 registers, 396 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z17ExecuteFifthLayerPdS_S_' for 'sm_80'
+ptxas info    : Function properties for _Z17ExecuteFifthLayerPdS_S_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 32 registers, 376 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z18ExecuteFourthLayerPdS_S_' for 'sm_80'
+ptxas info    : Function properties for _Z18ExecuteFourthLayerPdS_S_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 28 registers, 376 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z17ExecuteThirdLayerPdS_S_' for 'sm_80'
+ptxas info    : Function properties for _Z17ExecuteThirdLayerPdS_S_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 38 registers, 376 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z18ExecuteSecondLayerPdS_S_' for 'sm_80'
+ptxas info    : Function properties for _Z18ExecuteSecondLayerPdS_S_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 38 registers, 376 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z17ExecuteFirstLayerPdPiS0_S0_S_' for 'sm_80'
+ptxas info    : Function properties for _Z17ExecuteFirstLayerPdPiS0_S0_S_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 42 registers, 392 bytes cmem[0]

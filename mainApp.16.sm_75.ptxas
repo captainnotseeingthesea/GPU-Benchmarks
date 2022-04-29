@@ -1,0 +1,17 @@
+ptxas info    : 0 bytes gmem, 68 bytes cmem[3]
+ptxas info    : Compiling entry function '_Z14cuda_time_stepiiPfS_S_S_' for 'sm_75'
+ptxas info    : Function properties for _Z14cuda_time_stepiiPfS_S_S_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 20 registers, 392 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z17cuda_compute_fluxiPiPfS0_S0_' for 'sm_75'
+ptxas info    : Function properties for _Z17cuda_compute_fluxiPiPfS0_S0_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 60 registers, 392 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z24cuda_compute_step_factoriPfS_S_' for 'sm_75'
+ptxas info    : Function properties for _Z24cuda_compute_step_factoriPfS_S_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 20 registers, 384 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z25cuda_initialize_variablesiPf' for 'sm_75'
+ptxas info    : Function properties for _Z25cuda_initialize_variablesiPf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 22 registers, 368 bytes cmem[0]

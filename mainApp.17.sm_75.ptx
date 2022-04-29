@@ -1,0 +1,459 @@
+
+
+
+
+
+
+
+
+.version 7.0
+.target sm_75
+.address_size 64
+
+
+.const .align 4 .b8 c_Kernel[68];
+
+
+
+.visible .entry _Z21convolutionRowsKernelPfS_iii(
+.param .u64 _Z21convolutionRowsKernelPfS_iii_param_0,
+.param .u64 _Z21convolutionRowsKernelPfS_iii_param_1,
+.param .u32 _Z21convolutionRowsKernelPfS_iii_param_2,
+.param .u32 _Z21convolutionRowsKernelPfS_iii_param_3,
+.param .u32 _Z21convolutionRowsKernelPfS_iii_param_4
+)
+{
+.reg .pred %p<3>;
+.reg .f32 %f<163>;
+.reg .b32 %r<18>;
+.reg .b64 %rd<12>;
+
+	.shared .align 4 .b8 _ZZ21convolutionRowsKernelPfS_iiiE6s_Data[1536];
+
+ld.param.u64 %rd3, [_Z21convolutionRowsKernelPfS_iii_param_0];
+ld.param.u64 %rd4, [_Z21convolutionRowsKernelPfS_iii_param_1];
+ld.param.u32 %r3, [_Z21convolutionRowsKernelPfS_iii_param_2];
+ld.param.u32 %r4, [_Z21convolutionRowsKernelPfS_iii_param_4];
+cvta.to.global.u64 %rd5, %rd4;
+mov.u32 %r5, %ctaid.x;
+shl.b32 %r6, %r5, 6;
+mov.u32 %r7, %tid.x;
+add.s32 %r8, %r6, %r7;
+add.s32 %r1, %r8, -16;
+mov.u32 %r9, %ctaid.y;
+shl.b32 %r10, %r9, 2;
+mov.u32 %r11, %tid.y;
+add.s32 %r12, %r10, %r11;
+mad.lo.s32 %r13, %r12, %r4, %r1;
+cvt.s64.s32	%rd6, %r13;
+add.s64 %rd1, %rd6, 16;
+mul.wide.s32 %rd7, %r13, 4;
+add.s64 %rd8, %rd7, %rd5;
+add.s64 %rd2, %rd8, 64;
+ld.global.f32 %f6, [%rd8+64];
+mov.u32 %r14, _ZZ21convolutionRowsKernelPfS_iiiE6s_Data;
+mad.lo.s32 %r15, %r11, 384, %r14;
+shl.b32 %r16, %r7, 2;
+add.s32 %r2, %r15, %r16;
+st.shared.f32 [%r2+64], %f6;
+ld.global.f32 %f7, [%rd8+128];
+st.shared.f32 [%r2+128], %f7;
+ld.global.f32 %f8, [%rd8+192];
+st.shared.f32 [%r2+192], %f8;
+ld.global.f32 %f9, [%rd8+256];
+st.shared.f32 [%r2+256], %f9;
+setp.lt.s32	%p1, %r1, 0;
+mov.f32 %f162, 0f00000000;
+mov.f32 %f161, %f162;
+@%p1 bra BB0_2;
+
+ld.global.f32 %f161, [%rd2+-64];
+
+BB0_2:
+st.shared.f32 [%r2], %f161;
+sub.s32 %r17, %r3, %r1;
+setp.lt.s32	%p2, %r17, 81;
+@%p2 bra BB0_4;
+
+ld.global.f32 %f162, [%rd2+256];
+
+BB0_4:
+st.shared.f32 [%r2+320], %f162;
+bar.sync 0;
+ld.shared.f32 %f11, [%r2+32];
+ld.const.f32 %f12, [c_Kernel+64];
+fma.rn.f32 %f13, %f12, %f11, 0f00000000;
+ld.shared.f32 %f14, [%r2+36];
+ld.const.f32 %f15, [c_Kernel+60];
+fma.rn.f32 %f16, %f15, %f14, %f13;
+ld.shared.f32 %f17, [%r2+40];
+ld.const.f32 %f18, [c_Kernel+56];
+fma.rn.f32 %f19, %f18, %f17, %f16;
+ld.shared.f32 %f20, [%r2+44];
+ld.const.f32 %f21, [c_Kernel+52];
+fma.rn.f32 %f22, %f21, %f20, %f19;
+ld.shared.f32 %f23, [%r2+48];
+ld.const.f32 %f24, [c_Kernel+48];
+fma.rn.f32 %f25, %f24, %f23, %f22;
+ld.shared.f32 %f26, [%r2+52];
+ld.const.f32 %f27, [c_Kernel+44];
+fma.rn.f32 %f28, %f27, %f26, %f25;
+ld.shared.f32 %f29, [%r2+56];
+ld.const.f32 %f30, [c_Kernel+40];
+fma.rn.f32 %f31, %f30, %f29, %f28;
+ld.shared.f32 %f32, [%r2+60];
+ld.const.f32 %f33, [c_Kernel+36];
+fma.rn.f32 %f34, %f33, %f32, %f31;
+ld.shared.f32 %f35, [%r2+64];
+ld.const.f32 %f36, [c_Kernel+32];
+fma.rn.f32 %f37, %f36, %f35, %f34;
+ld.shared.f32 %f38, [%r2+68];
+ld.const.f32 %f39, [c_Kernel+28];
+fma.rn.f32 %f40, %f39, %f38, %f37;
+ld.shared.f32 %f41, [%r2+72];
+ld.const.f32 %f42, [c_Kernel+24];
+fma.rn.f32 %f43, %f42, %f41, %f40;
+ld.shared.f32 %f44, [%r2+76];
+ld.const.f32 %f45, [c_Kernel+20];
+fma.rn.f32 %f46, %f45, %f44, %f43;
+ld.shared.f32 %f47, [%r2+80];
+ld.const.f32 %f48, [c_Kernel+16];
+fma.rn.f32 %f49, %f48, %f47, %f46;
+ld.shared.f32 %f50, [%r2+84];
+ld.const.f32 %f51, [c_Kernel+12];
+fma.rn.f32 %f52, %f51, %f50, %f49;
+ld.shared.f32 %f53, [%r2+88];
+ld.const.f32 %f54, [c_Kernel+8];
+fma.rn.f32 %f55, %f54, %f53, %f52;
+ld.shared.f32 %f56, [%r2+92];
+ld.const.f32 %f57, [c_Kernel+4];
+fma.rn.f32 %f58, %f57, %f56, %f55;
+ld.shared.f32 %f59, [%r2+96];
+ld.const.f32 %f60, [c_Kernel];
+fma.rn.f32 %f61, %f60, %f59, %f58;
+cvta.to.global.u64 %rd9, %rd3;
+shl.b64 %rd10, %rd1, 2;
+add.s64 %rd11, %rd9, %rd10;
+st.global.f32 [%rd11], %f61;
+fma.rn.f32 %f62, %f12, %f59, 0f00000000;
+ld.shared.f32 %f63, [%r2+100];
+fma.rn.f32 %f64, %f15, %f63, %f62;
+ld.shared.f32 %f65, [%r2+104];
+fma.rn.f32 %f66, %f18, %f65, %f64;
+ld.shared.f32 %f67, [%r2+108];
+fma.rn.f32 %f68, %f21, %f67, %f66;
+ld.shared.f32 %f69, [%r2+112];
+fma.rn.f32 %f70, %f24, %f69, %f68;
+ld.shared.f32 %f71, [%r2+116];
+fma.rn.f32 %f72, %f27, %f71, %f70;
+ld.shared.f32 %f73, [%r2+120];
+fma.rn.f32 %f74, %f30, %f73, %f72;
+ld.shared.f32 %f75, [%r2+124];
+fma.rn.f32 %f76, %f33, %f75, %f74;
+ld.shared.f32 %f77, [%r2+128];
+fma.rn.f32 %f78, %f36, %f77, %f76;
+ld.shared.f32 %f79, [%r2+132];
+fma.rn.f32 %f80, %f39, %f79, %f78;
+ld.shared.f32 %f81, [%r2+136];
+fma.rn.f32 %f82, %f42, %f81, %f80;
+ld.shared.f32 %f83, [%r2+140];
+fma.rn.f32 %f84, %f45, %f83, %f82;
+ld.shared.f32 %f85, [%r2+144];
+fma.rn.f32 %f86, %f48, %f85, %f84;
+ld.shared.f32 %f87, [%r2+148];
+fma.rn.f32 %f88, %f51, %f87, %f86;
+ld.shared.f32 %f89, [%r2+152];
+fma.rn.f32 %f90, %f54, %f89, %f88;
+ld.shared.f32 %f91, [%r2+156];
+fma.rn.f32 %f92, %f57, %f91, %f90;
+ld.shared.f32 %f93, [%r2+160];
+fma.rn.f32 %f94, %f60, %f93, %f92;
+st.global.f32 [%rd11+64], %f94;
+fma.rn.f32 %f95, %f12, %f93, 0f00000000;
+ld.shared.f32 %f96, [%r2+164];
+fma.rn.f32 %f97, %f15, %f96, %f95;
+ld.shared.f32 %f98, [%r2+168];
+fma.rn.f32 %f99, %f18, %f98, %f97;
+ld.shared.f32 %f100, [%r2+172];
+fma.rn.f32 %f101, %f21, %f100, %f99;
+ld.shared.f32 %f102, [%r2+176];
+fma.rn.f32 %f103, %f24, %f102, %f101;
+ld.shared.f32 %f104, [%r2+180];
+fma.rn.f32 %f105, %f27, %f104, %f103;
+ld.shared.f32 %f106, [%r2+184];
+fma.rn.f32 %f107, %f30, %f106, %f105;
+ld.shared.f32 %f108, [%r2+188];
+fma.rn.f32 %f109, %f33, %f108, %f107;
+ld.shared.f32 %f110, [%r2+192];
+fma.rn.f32 %f111, %f36, %f110, %f109;
+ld.shared.f32 %f112, [%r2+196];
+fma.rn.f32 %f113, %f39, %f112, %f111;
+ld.shared.f32 %f114, [%r2+200];
+fma.rn.f32 %f115, %f42, %f114, %f113;
+ld.shared.f32 %f116, [%r2+204];
+fma.rn.f32 %f117, %f45, %f116, %f115;
+ld.shared.f32 %f118, [%r2+208];
+fma.rn.f32 %f119, %f48, %f118, %f117;
+ld.shared.f32 %f120, [%r2+212];
+fma.rn.f32 %f121, %f51, %f120, %f119;
+ld.shared.f32 %f122, [%r2+216];
+fma.rn.f32 %f123, %f54, %f122, %f121;
+ld.shared.f32 %f124, [%r2+220];
+fma.rn.f32 %f125, %f57, %f124, %f123;
+ld.shared.f32 %f126, [%r2+224];
+fma.rn.f32 %f127, %f60, %f126, %f125;
+st.global.f32 [%rd11+128], %f127;
+fma.rn.f32 %f128, %f12, %f126, 0f00000000;
+ld.shared.f32 %f129, [%r2+228];
+fma.rn.f32 %f130, %f15, %f129, %f128;
+ld.shared.f32 %f131, [%r2+232];
+fma.rn.f32 %f132, %f18, %f131, %f130;
+ld.shared.f32 %f133, [%r2+236];
+fma.rn.f32 %f134, %f21, %f133, %f132;
+ld.shared.f32 %f135, [%r2+240];
+fma.rn.f32 %f136, %f24, %f135, %f134;
+ld.shared.f32 %f137, [%r2+244];
+fma.rn.f32 %f138, %f27, %f137, %f136;
+ld.shared.f32 %f139, [%r2+248];
+fma.rn.f32 %f140, %f30, %f139, %f138;
+ld.shared.f32 %f141, [%r2+252];
+fma.rn.f32 %f142, %f33, %f141, %f140;
+ld.shared.f32 %f143, [%r2+256];
+fma.rn.f32 %f144, %f36, %f143, %f142;
+ld.shared.f32 %f145, [%r2+260];
+fma.rn.f32 %f146, %f39, %f145, %f144;
+ld.shared.f32 %f147, [%r2+264];
+fma.rn.f32 %f148, %f42, %f147, %f146;
+ld.shared.f32 %f149, [%r2+268];
+fma.rn.f32 %f150, %f45, %f149, %f148;
+ld.shared.f32 %f151, [%r2+272];
+fma.rn.f32 %f152, %f48, %f151, %f150;
+ld.shared.f32 %f153, [%r2+276];
+fma.rn.f32 %f154, %f51, %f153, %f152;
+ld.shared.f32 %f155, [%r2+280];
+fma.rn.f32 %f156, %f54, %f155, %f154;
+ld.shared.f32 %f157, [%r2+284];
+fma.rn.f32 %f158, %f57, %f157, %f156;
+ld.shared.f32 %f159, [%r2+288];
+fma.rn.f32 %f160, %f60, %f159, %f158;
+st.global.f32 [%rd11+192], %f160;
+ret;
+}
+
+
+.visible .entry _Z24convolutionColumnsKernelPfS_iii(
+.param .u64 _Z24convolutionColumnsKernelPfS_iii_param_0,
+.param .u64 _Z24convolutionColumnsKernelPfS_iii_param_1,
+.param .u32 _Z24convolutionColumnsKernelPfS_iii_param_2,
+.param .u32 _Z24convolutionColumnsKernelPfS_iii_param_3,
+.param .u32 _Z24convolutionColumnsKernelPfS_iii_param_4
+)
+{
+.reg .pred %p<3>;
+.reg .f32 %f<139>;
+.reg .b32 %r<21>;
+.reg .b64 %rd<26>;
+
+	.shared .align 4 .b8 _ZZ24convolutionColumnsKernelPfS_iiiE6s_Data[3136];
+
+ld.param.u64 %rd4, [_Z24convolutionColumnsKernelPfS_iii_param_0];
+ld.param.u64 %rd5, [_Z24convolutionColumnsKernelPfS_iii_param_1];
+ld.param.u32 %r4, [_Z24convolutionColumnsKernelPfS_iii_param_3];
+ld.param.u32 %r5, [_Z24convolutionColumnsKernelPfS_iii_param_4];
+cvta.to.global.u64 %rd1, %rd5;
+mov.u32 %r6, %ctaid.x;
+shl.b32 %r7, %r6, 4;
+mov.u32 %r8, %tid.x;
+add.s32 %r9, %r7, %r8;
+mov.u32 %r10, %ctaid.y;
+shl.b32 %r11, %r10, 5;
+mov.u32 %r12, %tid.y;
+add.s32 %r13, %r11, %r12;
+add.s32 %r1, %r13, -8;
+mad.lo.s32 %r2, %r1, %r5, %r9;
+cvt.s64.s32	%rd2, %r2;
+shl.b32 %r14, %r5, 3;
+cvt.s64.s32	%rd6, %r14;
+add.s64 %rd3, %rd6, %rd2;
+shl.b64 %rd7, %rd3, 2;
+add.s64 %rd8, %rd1, %rd7;
+ld.global.f32 %f6, [%rd8];
+mov.u32 %r15, _ZZ24convolutionColumnsKernelPfS_iiiE6s_Data;
+mad.lo.s32 %r16, %r8, 196, %r15;
+shl.b32 %r17, %r12, 2;
+add.s32 %r3, %r16, %r17;
+st.shared.f32 [%r3+32], %f6;
+mul.wide.s32 %rd9, %r14, 4;
+add.s64 %rd10, %rd8, %rd9;
+ld.global.f32 %f7, [%rd10];
+st.shared.f32 [%r3+64], %f7;
+add.s64 %rd11, %rd10, %rd9;
+ld.global.f32 %f8, [%rd11];
+st.shared.f32 [%r3+96], %f8;
+add.s64 %rd12, %rd11, %rd9;
+ld.global.f32 %f9, [%rd12];
+st.shared.f32 [%r3+128], %f9;
+setp.lt.s32	%p1, %r1, 0;
+mov.f32 %f138, 0f00000000;
+mov.f32 %f137, %f138;
+@%p1 bra BB1_2;
+
+mul.wide.s32 %rd13, %r2, 4;
+add.s64 %rd14, %rd1, %rd13;
+ld.global.f32 %f137, [%rd14];
+
+BB1_2:
+st.shared.f32 [%r3], %f137;
+sub.s32 %r18, %r4, %r1;
+setp.lt.s32	%p2, %r18, 41;
+@%p2 bra BB1_4;
+
+mul.lo.s32 %r19, %r5, 40;
+cvt.s64.s32	%rd15, %r19;
+add.s64 %rd16, %rd15, %rd2;
+shl.b64 %rd17, %rd16, 2;
+add.s64 %rd18, %rd1, %rd17;
+ld.global.f32 %f138, [%rd18];
+
+BB1_4:
+st.shared.f32 [%r3+160], %f138;
+bar.sync 0;
+ld.shared.f32 %f11, [%r3];
+ld.const.f32 %f12, [c_Kernel+64];
+fma.rn.f32 %f13, %f12, %f11, 0f00000000;
+ld.shared.f32 %f14, [%r3+4];
+ld.const.f32 %f15, [c_Kernel+60];
+fma.rn.f32 %f16, %f15, %f14, %f13;
+ld.shared.f32 %f17, [%r3+8];
+ld.const.f32 %f18, [c_Kernel+56];
+fma.rn.f32 %f19, %f18, %f17, %f16;
+ld.shared.f32 %f20, [%r3+12];
+ld.const.f32 %f21, [c_Kernel+52];
+fma.rn.f32 %f22, %f21, %f20, %f19;
+ld.shared.f32 %f23, [%r3+16];
+ld.const.f32 %f24, [c_Kernel+48];
+fma.rn.f32 %f25, %f24, %f23, %f22;
+ld.shared.f32 %f26, [%r3+20];
+ld.const.f32 %f27, [c_Kernel+44];
+fma.rn.f32 %f28, %f27, %f26, %f25;
+ld.shared.f32 %f29, [%r3+24];
+ld.const.f32 %f30, [c_Kernel+40];
+fma.rn.f32 %f31, %f30, %f29, %f28;
+ld.shared.f32 %f32, [%r3+28];
+ld.const.f32 %f33, [c_Kernel+36];
+fma.rn.f32 %f34, %f33, %f32, %f31;
+ld.shared.f32 %f35, [%r3+32];
+ld.const.f32 %f36, [c_Kernel+32];
+fma.rn.f32 %f37, %f36, %f35, %f34;
+ld.shared.f32 %f38, [%r3+36];
+ld.const.f32 %f39, [c_Kernel+28];
+fma.rn.f32 %f40, %f39, %f38, %f37;
+ld.shared.f32 %f41, [%r3+40];
+ld.const.f32 %f42, [c_Kernel+24];
+fma.rn.f32 %f43, %f42, %f41, %f40;
+ld.shared.f32 %f44, [%r3+44];
+ld.const.f32 %f45, [c_Kernel+20];
+fma.rn.f32 %f46, %f45, %f44, %f43;
+ld.shared.f32 %f47, [%r3+48];
+ld.const.f32 %f48, [c_Kernel+16];
+fma.rn.f32 %f49, %f48, %f47, %f46;
+ld.shared.f32 %f50, [%r3+52];
+ld.const.f32 %f51, [c_Kernel+12];
+fma.rn.f32 %f52, %f51, %f50, %f49;
+ld.shared.f32 %f53, [%r3+56];
+ld.const.f32 %f54, [c_Kernel+8];
+fma.rn.f32 %f55, %f54, %f53, %f52;
+ld.shared.f32 %f56, [%r3+60];
+ld.const.f32 %f57, [c_Kernel+4];
+fma.rn.f32 %f58, %f57, %f56, %f55;
+ld.shared.f32 %f59, [%r3+64];
+ld.const.f32 %f60, [c_Kernel];
+fma.rn.f32 %f61, %f60, %f59, %f58;
+cvta.to.global.u64 %rd19, %rd4;
+add.s64 %rd21, %rd19, %rd7;
+st.global.f32 [%rd21], %f61;
+fma.rn.f32 %f62, %f12, %f35, 0f00000000;
+fma.rn.f32 %f63, %f15, %f38, %f62;
+fma.rn.f32 %f64, %f18, %f41, %f63;
+fma.rn.f32 %f65, %f21, %f44, %f64;
+fma.rn.f32 %f66, %f24, %f47, %f65;
+fma.rn.f32 %f67, %f27, %f50, %f66;
+fma.rn.f32 %f68, %f30, %f53, %f67;
+fma.rn.f32 %f69, %f33, %f56, %f68;
+fma.rn.f32 %f70, %f36, %f59, %f69;
+ld.shared.f32 %f71, [%r3+68];
+fma.rn.f32 %f72, %f39, %f71, %f70;
+ld.shared.f32 %f73, [%r3+72];
+fma.rn.f32 %f74, %f42, %f73, %f72;
+ld.shared.f32 %f75, [%r3+76];
+fma.rn.f32 %f76, %f45, %f75, %f74;
+ld.shared.f32 %f77, [%r3+80];
+fma.rn.f32 %f78, %f48, %f77, %f76;
+ld.shared.f32 %f79, [%r3+84];
+fma.rn.f32 %f80, %f51, %f79, %f78;
+ld.shared.f32 %f81, [%r3+88];
+fma.rn.f32 %f82, %f54, %f81, %f80;
+ld.shared.f32 %f83, [%r3+92];
+fma.rn.f32 %f84, %f57, %f83, %f82;
+ld.shared.f32 %f85, [%r3+96];
+fma.rn.f32 %f86, %f60, %f85, %f84;
+add.s64 %rd23, %rd21, %rd9;
+st.global.f32 [%rd23], %f86;
+fma.rn.f32 %f87, %f12, %f59, 0f00000000;
+fma.rn.f32 %f88, %f15, %f71, %f87;
+fma.rn.f32 %f89, %f18, %f73, %f88;
+fma.rn.f32 %f90, %f21, %f75, %f89;
+fma.rn.f32 %f91, %f24, %f77, %f90;
+fma.rn.f32 %f92, %f27, %f79, %f91;
+fma.rn.f32 %f93, %f30, %f81, %f92;
+fma.rn.f32 %f94, %f33, %f83, %f93;
+fma.rn.f32 %f95, %f36, %f85, %f94;
+ld.shared.f32 %f96, [%r3+100];
+fma.rn.f32 %f97, %f39, %f96, %f95;
+ld.shared.f32 %f98, [%r3+104];
+fma.rn.f32 %f99, %f42, %f98, %f97;
+ld.shared.f32 %f100, [%r3+108];
+fma.rn.f32 %f101, %f45, %f100, %f99;
+ld.shared.f32 %f102, [%r3+112];
+fma.rn.f32 %f103, %f48, %f102, %f101;
+ld.shared.f32 %f104, [%r3+116];
+fma.rn.f32 %f105, %f51, %f104, %f103;
+ld.shared.f32 %f106, [%r3+120];
+fma.rn.f32 %f107, %f54, %f106, %f105;
+ld.shared.f32 %f108, [%r3+124];
+fma.rn.f32 %f109, %f57, %f108, %f107;
+ld.shared.f32 %f110, [%r3+128];
+fma.rn.f32 %f111, %f60, %f110, %f109;
+add.s64 %rd24, %rd23, %rd9;
+st.global.f32 [%rd24], %f111;
+fma.rn.f32 %f112, %f12, %f85, 0f00000000;
+fma.rn.f32 %f113, %f15, %f96, %f112;
+fma.rn.f32 %f114, %f18, %f98, %f113;
+fma.rn.f32 %f115, %f21, %f100, %f114;
+fma.rn.f32 %f116, %f24, %f102, %f115;
+fma.rn.f32 %f117, %f27, %f104, %f116;
+fma.rn.f32 %f118, %f30, %f106, %f117;
+fma.rn.f32 %f119, %f33, %f108, %f118;
+fma.rn.f32 %f120, %f36, %f110, %f119;
+ld.shared.f32 %f121, [%r3+132];
+fma.rn.f32 %f122, %f39, %f121, %f120;
+ld.shared.f32 %f123, [%r3+136];
+fma.rn.f32 %f124, %f42, %f123, %f122;
+ld.shared.f32 %f125, [%r3+140];
+fma.rn.f32 %f126, %f45, %f125, %f124;
+ld.shared.f32 %f127, [%r3+144];
+fma.rn.f32 %f128, %f48, %f127, %f126;
+ld.shared.f32 %f129, [%r3+148];
+fma.rn.f32 %f130, %f51, %f129, %f128;
+ld.shared.f32 %f131, [%r3+152];
+fma.rn.f32 %f132, %f54, %f131, %f130;
+ld.shared.f32 %f133, [%r3+156];
+fma.rn.f32 %f134, %f57, %f133, %f132;
+ld.shared.f32 %f135, [%r3+160];
+fma.rn.f32 %f136, %f60, %f135, %f134;
+add.s64 %rd25, %rd24, %rd9;
+st.global.f32 [%rd25], %f136;
+ret;
+}
+
+

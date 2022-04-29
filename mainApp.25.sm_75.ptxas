@@ -1,0 +1,5 @@
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_Z20GPU_forward_pass_gruPfS_S_S_S_S_S_S_S_S_S_' for 'sm_75'
+ptxas info    : Function properties for _Z20GPU_forward_pass_gruPfS_S_S_S_S_S_S_S_S_S_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 72 registers, 400 bytes smem, 440 bytes cmem[0]

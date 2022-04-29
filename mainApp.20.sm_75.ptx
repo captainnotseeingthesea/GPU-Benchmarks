@@ -1,0 +1,163 @@
+
+
+
+
+
+
+
+
+.version 7.0
+.target sm_75
+.address_size 64
+
+
+.entry _Z18RandomAccessUpdateyPyS_(
+.param .u64 _Z18RandomAccessUpdateyPyS__param_0,
+.param .u64 _Z18RandomAccessUpdateyPyS__param_1,
+.param .u64 _Z18RandomAccessUpdateyPyS__param_2
+)
+{
+.reg .pred %p<7>;
+.reg .b32 %r<51>;
+.reg .b64 %rd<87>;
+
+
+ld.param.u64 %rd12, [_Z18RandomAccessUpdateyPyS__param_0];
+ld.param.u64 %rd13, [_Z18RandomAccessUpdateyPyS__param_1];
+ld.param.u64 %rd14, [_Z18RandomAccessUpdateyPyS__param_2];
+cvta.to.global.u64 %rd1, %rd13;
+mov.u32 %r19, %ntid.x;
+mov.u32 %r20, %ctaid.x;
+mov.u32 %r21, %tid.x;
+mad.lo.s32 %r22, %r19, %r20, %r21;
+cvta.to.global.u64 %rd15, %rd14;
+mul.wide.u32 %rd16, %r22, 8;
+add.s64 %rd17, %rd15, %rd16;
+ld.global.u64 %rd2, [%rd17];
+shr.u64 %rd3, %rd12, 14;
+bfe.u64 %rd4, %rd12, 14, 48;
+setp.eq.s64	%p1, %rd4, 0;
+@%p1 bra BB0_10;
+
+mov.b64	{%r43, %r44}, %rd2;
+add.s64 %rd5, %rd12, -1;
+and.b64 %rd21, %rd3, 3;
+mov.u64 %rd83, 1;
+mov.u64 %rd86, 0;
+setp.eq.s64	%p2, %rd21, 0;
+@%p2 bra BB0_8;
+
+setp.eq.s64	%p3, %rd21, 1;
+@%p3 bra BB0_3;
+bra.uni BB0_4;
+
+BB0_3:
+mov.u64 %rd83, %rd86;
+bra.uni BB0_7;
+
+BB0_4:
+setp.eq.s64	%p4, %rd21, 2;
+@%p4 bra BB0_6;
+
+shl.b64 %rd23, %rd2, 1;
+shr.s64 %rd24, %rd2, 63;
+and.b64 %rd25, %rd24, 7;
+xor.b64 %rd26, %rd25, %rd23;
+mov.b64	{%r43, %r44}, %rd26;
+and.b64 %rd27, %rd26, %rd5;
+shl.b64 %rd28, %rd27, 3;
+add.s64 %rd29, %rd1, %rd28;
+atom.global.xor.b32 %r23, [%rd29], %r43;
+add.s64 %rd30, %rd29, 4;
+atom.global.xor.b32 %r24, [%rd30], %r44;
+mov.u64 %rd83, 2;
+
+BB0_6:
+mov.b64	%rd31, {%r43, %r44};
+shl.b64 %rd32, %rd31, 1;
+shr.s64 %rd33, %rd31, 63;
+and.b64 %rd34, %rd33, 7;
+xor.b64 %rd35, %rd34, %rd32;
+mov.b64	{%r43, %r44}, %rd35;
+and.b64 %rd36, %rd35, %rd5;
+shl.b64 %rd37, %rd36, 3;
+add.s64 %rd38, %rd1, %rd37;
+atom.global.xor.b32 %r25, [%rd38], %r43;
+add.s64 %rd39, %rd38, 4;
+atom.global.xor.b32 %r26, [%rd39], %r44;
+
+BB0_7:
+mov.b64	%rd40, {%r43, %r44};
+shl.b64 %rd41, %rd40, 1;
+shr.s64 %rd42, %rd40, 63;
+and.b64 %rd43, %rd42, 7;
+xor.b64 %rd44, %rd43, %rd41;
+mov.b64	{%r43, %r44}, %rd44;
+and.b64 %rd45, %rd44, %rd5;
+shl.b64 %rd46, %rd45, 3;
+add.s64 %rd47, %rd1, %rd46;
+atom.global.xor.b32 %r27, [%rd47], %r43;
+add.s64 %rd48, %rd47, 4;
+atom.global.xor.b32 %r28, [%rd48], %r44;
+add.s64 %rd86, %rd83, 1;
+
+BB0_8:
+and.b64 %rd49, %rd3, 281474976710652;
+setp.lt.u64	%p5, %rd49, 4;
+@%p5 bra BB0_10;
+
+BB0_9:
+mov.b64	%rd50, {%r43, %r44};
+shl.b64 %rd51, %rd50, 1;
+shr.s64 %rd52, %rd50, 63;
+and.b64 %rd53, %rd52, 7;
+xor.b64 %rd54, %rd53, %rd51;
+mov.b64	{%r29, %r30}, %rd54;
+and.b64 %rd55, %rd54, %rd5;
+shl.b64 %rd56, %rd55, 3;
+add.s64 %rd57, %rd1, %rd56;
+atom.global.xor.b32 %r31, [%rd57], %r29;
+add.s64 %rd58, %rd57, 4;
+atom.global.xor.b32 %r32, [%rd58], %r30;
+shl.b64 %rd59, %rd54, 1;
+bfe.s64 %rd60, %rd50, 62, 1;
+and.b64 %rd61, %rd60, 7;
+xor.b64 %rd62, %rd61, %rd59;
+mov.b64	{%r33, %r34}, %rd62;
+and.b64 %rd63, %rd62, %rd5;
+shl.b64 %rd64, %rd63, 3;
+add.s64 %rd65, %rd1, %rd64;
+atom.global.xor.b32 %r35, [%rd65], %r33;
+add.s64 %rd66, %rd65, 4;
+atom.global.xor.b32 %r36, [%rd66], %r34;
+shl.b64 %rd67, %rd62, 1;
+bfe.s64 %rd68, %rd54, 62, 1;
+and.b64 %rd69, %rd68, 7;
+xor.b64 %rd70, %rd69, %rd67;
+mov.b64	{%r37, %r38}, %rd70;
+and.b64 %rd71, %rd70, %rd5;
+shl.b64 %rd72, %rd71, 3;
+add.s64 %rd73, %rd1, %rd72;
+atom.global.xor.b32 %r39, [%rd73], %r37;
+add.s64 %rd74, %rd73, 4;
+atom.global.xor.b32 %r40, [%rd74], %r38;
+shl.b64 %rd75, %rd70, 1;
+bfe.s64 %rd76, %rd62, 62, 1;
+and.b64 %rd77, %rd76, 7;
+xor.b64 %rd78, %rd77, %rd75;
+mov.b64	{%r43, %r44}, %rd78;
+and.b64 %rd79, %rd78, %rd5;
+shl.b64 %rd80, %rd79, 3;
+add.s64 %rd81, %rd1, %rd80;
+atom.global.xor.b32 %r41, [%rd81], %r43;
+add.s64 %rd82, %rd81, 4;
+atom.global.xor.b32 %r42, [%rd82], %r44;
+add.s64 %rd86, %rd86, 4;
+setp.lt.u64	%p6, %rd86, %rd4;
+@%p6 bra BB0_9;
+
+BB0_10:
+ret;
+}
+
+

@@ -1,0 +1,9 @@
+ptxas info    : 0 bytes gmem, 456 bytes cmem[3]
+ptxas info    : Compiling entry function '_Z29Pathcalc_Portfolio_KernelGPU2Pf' for 'sm_75'
+ptxas info    : Function properties for _Z29Pathcalc_Portfolio_KernelGPU2Pf
+    960 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 56 registers, 360 bytes cmem[0], 24 bytes cmem[2]
+ptxas info    : Compiling entry function '_Z28Pathcalc_Portfolio_KernelGPUPfS_' for 'sm_75'
+ptxas info    : Function properties for _Z28Pathcalc_Portfolio_KernelGPUPfS_
+    14400 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 64 registers, 368 bytes cmem[0], 24 bytes cmem[2]

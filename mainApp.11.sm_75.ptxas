@@ -1,0 +1,17 @@
+ptxas info    : 0 bytes gmem, 200 bytes cmem[3]
+ptxas info    : Compiling entry function '_Z18executeFourthLayerPfS_S_' for 'sm_75'
+ptxas info    : Function properties for _Z18executeFourthLayerPfS_S_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 61 registers, 376 bytes cmem[0], 16 bytes cmem[2]
+ptxas info    : Compiling entry function '_Z17executeThirdLayerPfS_S_' for 'sm_75'
+ptxas info    : Function properties for _Z17executeThirdLayerPfS_S_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 44 registers, 376 bytes cmem[0], 16 bytes cmem[2]
+ptxas info    : Compiling entry function '_Z18executeSecondLayerPfS_S_' for 'sm_75'
+ptxas info    : Function properties for _Z18executeSecondLayerPfS_S_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 64 registers, 376 bytes cmem[0], 16 bytes cmem[2]
+ptxas info    : Compiling entry function '_Z17executeFirstLayerPfS_S_' for 'sm_75'
+ptxas info    : Function properties for _Z17executeFirstLayerPfS_S_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 64 registers, 376 bytes cmem[0], 16 bytes cmem[2]

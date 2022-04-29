@@ -1,0 +1,5 @@
+ptxas info    : 0 bytes gmem, 40000 bytes cmem[3]
+ptxas info    : Compiling entry function '_Z8spmv_jdsPfPKfPKiS3_S1_S3_i' for 'sm_75'
+ptxas info    : Function properties for _Z8spmv_jdsPfPKfPKiS3_S1_S3_i
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 30 registers, 404 bytes cmem[0], 8 bytes cmem[2]
