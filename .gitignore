@@ -1,0 +1,5 @@
+*.log
+*.txt
+_cuobjdump*
+_app_cuda_version*
+core
